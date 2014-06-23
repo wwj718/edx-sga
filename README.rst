@@ -21,4 +21,6 @@ installation:
   
 Now when you add an "Advanced" unit in Studio, "Staff Graded Asssignment" will be an option:
 
-![screenshot of Studio UI for Advanced Components](/../<branch name>/img/screenshot-studio-new-unit.png?raw=true "Studio Screenshot")
+![screenshot of Studio UI for Advanced Components](/../screenshots/img/screenshot-studio-new-unit.png?raw=true)
+
+![](https://raw.githubusercontent.com/mitodl/edx-sga/screenshots/img/screenshot-studio-new-unit.png)
