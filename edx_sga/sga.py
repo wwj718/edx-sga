@@ -149,7 +149,7 @@ class StaffGradedAssignmentXBlock(XBlock):
         template = get_template("staff_graded_assignment/show.html")
         context = {
             "student_state": json.dumps(self.student_state()),
-            "id": "_".join(filter(None, self.location))
+            "id": "_".join(filter(None, self.location)).replace(".", "_")
         }
         if self.show_staff_grading_interface():
             context['is_course_staff'] = True
