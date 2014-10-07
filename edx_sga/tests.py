@@ -8,11 +8,13 @@ import tempfile
 import unittest
 
 from courseware.models import StudentModule
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.files.storage import FileSystemStorage
+from opaque_keys.edx.locations import Location, SlashSeparatedCourseKey
 from student.models import UserProfile
 from xblock.field_data import DictFieldData
-from opaque_keys.edx.locations import Location, SlashSeparatedCourseKey
+from xblock.runtime import Mixologist
 
 
 class DummyResource(object):
@@ -54,9 +56,11 @@ class StaffGradedAssignmentXblockTests(unittest.TestCase):
         self.addCleanup(patcher.stop)
 
     def make_one(self, **kw):
-        from edx_sga.sga import StaffGradedAssignmentXBlock as cls
+        from edx_sga.sga import StaffGradedAssignmentXBlock as component_class
+        mixologist = Mixologist(settings.XBLOCK_MIXINS)
+        mixed = mixologist.mix(component_class)
         field_data = DictFieldData(kw)
-        block = cls(self.runtime, field_data, self.scope_ids)
+        block = mixed(self.runtime, field_data, self.scope_ids)
         block.location = Location(
             'org', 'course', 'run', 'category', 'name', 'revision'
         )
