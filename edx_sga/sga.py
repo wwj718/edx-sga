@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# encoding: utf-8
 """
 This block defines a Staff Graded Assignment.  Students are shown a rubric
 and invited to upload a file which is then graded by staff.
@@ -63,6 +65,19 @@ class StaffGradedAssignmentXBlock(XBlock):
     has_score = True
     icon_class = 'problem'
     STUDENT_FILEUPLOAD_MAX_SIZE = 4 * 1000 * 1000  # 4 MB
+    #题目内容
+    problem_content = String(
+        default='problem content', scope=Scope.settings,
+        help="problem content"
+    )
+
+    #学生答案
+    #可以实验翻译功能来处理汉语
+    student_answer = String(
+        default='student answer', scope=Scope.user_state,
+        help="student answer"
+    )
+
 
     display_name = String(
         default='Staff Graded Assignment', scope=Scope.settings,
@@ -255,6 +270,7 @@ class StaffGradedAssignmentXBlock(XBlock):
 
         return {
             "display_name": self.display_name,
+            "problem_content": self.problem_content,
             "uploaded": uploaded,
             "annotated": annotated,
             "graded": graded,
@@ -348,6 +364,7 @@ class StaffGradedAssignmentXBlock(XBlock):
                 (field, none_to_empty(getattr(self, field.name)), validator)
                 for field, validator in (
                     (cls.display_name, 'string'),
+                    (cls.problem_content, 'string'),
                     (cls.points, 'number'),
                     (cls.weight, 'number'))
             )
@@ -362,8 +379,14 @@ class StaffGradedAssignmentXBlock(XBlock):
                     context
                 )
             )
-            fragment.add_javascript(_resource("static/js/src/studio.js"))
             fragment.initialize_js('StaffGradedAssignmentXBlock')
+
+            fragment.add_javascript(_resource("static/js/src/studio.js"))
+            #fragment.css(_resource("static/css/simditor/styles/simditor.css"))
+            #fragment.add_javascript(_resource("static/js/simditor/scripts/jquery.min.js"))
+            #fragment.add_javascript(_resource("static/js/simditor/scripts/module.js"))
+            #fragment.add_javascript(_resource("static/js/simditor/scripts/hotkeys.js"))
+            #fragment.add_javascript(_resource("static/js/simditor/scripts/simditor.js"))
             return fragment
         except:  # pragma: NO COVER
             log.error("Don't swallow my exceptions", exc_info=True)
@@ -376,6 +399,7 @@ class StaffGradedAssignmentXBlock(XBlock):
         Persist block data when updating settings in studio.
         """
         self.display_name = data.get('display_name', self.display_name)
+        self.problem_content = data.get('problem_content', self.problem_content)
 
         # Validate points before saving
         points = data.get('points', self.points)

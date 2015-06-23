@@ -18,6 +18,10 @@ function StaffGradedAssignmentXBlock(runtime, element, server) {
         $(element).find('input').each(function(index, input) {
             data[input.name] = input.value;
         });
+        $(element).find('textarea').each(function(index, input) {
+            data[input.name] = input.value;
+        });
+
 
         $.ajax({
             type: 'POST',
