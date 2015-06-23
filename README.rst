@@ -9,6 +9,11 @@
 -  学生提交答案。课程团队在组件对应的lms页面点击GRADE SUBMISSIONS，可以进入评审环节，可看到所有的提交。  
 -  评审结果将计入学生成绩。在`进度`和成绩单中都将呈现
 
+TODO
+====
+
+-  完成edit部分的设置，保存功能（参考之前写的xblock）
+-  允许主观题text input ，最好是富文本，模仿其他问题模块
 
 
 Staff Graded Assignment XBlock
