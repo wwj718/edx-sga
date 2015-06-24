@@ -1,11 +1,15 @@
 {% load i18n %}
-
 <div class="sga-block" data-state="{{ student_state }}" data-max-size="{{ max_file_size }}"
      data-staff="{{ is_course_staff }}">
   <script type="text/template" id="sga-tmpl">
     <% if (display_name) { %>
        <b><%= display_name %></b>
     <% } %>
+<hr>
+    <% if (problem_content) { %>
+       <b><%=problem_content %></b>
+    <% } %>
+<hr>    
     <% if (uploaded) { %>
       <p><b>File uploaded</b> 
         <a href="<%= downloadUrl %>"><%= uploaded.filename %></a></p>
@@ -126,6 +130,7 @@
       </div>
     </div>
   </section>
+
 
   <section aria-hidden="true" class="modal staff-modal" 
            style="height: 80%" id="{{ id }}-debug">
