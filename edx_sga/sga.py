@@ -25,7 +25,7 @@ from django.template import Context, Template
 
 from student.models import user_by_anonymous_id
 from submissions import api as submissions_api
-from submissions.models import StudentItem as SubmissionsStudent
+from submissions.models import StudentItem as SubmissionsStudent #需要django app来存储这个数据
 
 from webob.response import Response
 
@@ -250,6 +250,7 @@ class StaffGradedAssignmentXBlock(XBlock):
         """
         Returns a JSON serializable representation of student's state for
         rendering in client view.
+        这是关键，给模板使用, 在lms里
         """
         submission = self.get_submission()
         if submission:
@@ -270,7 +271,8 @@ class StaffGradedAssignmentXBlock(XBlock):
 
         return {
             "display_name": self.display_name,
-            "problem_content": self.problem_content,
+            "problem_content": self.problem_content,#题目
+            "student_answer": self.student_answer,#题目
             "uploaded": uploaded,
             "annotated": annotated,
             "graded": graded,
@@ -282,6 +284,7 @@ class StaffGradedAssignmentXBlock(XBlock):
         """
         Return student assignment information for display on the
         grading screen.
+        显示在教室批改部分
         """
         def get_student_data():
             # pylint: disable=no-member
@@ -329,6 +332,7 @@ class StaffGradedAssignmentXBlock(XBlock):
                     'student_id': student.student_id,
                     'submission_id': submission['uuid'],
                     'username': module.student.username,
+                    'student_answer': self.student_answer,
                     'fullname': module.student.profile.name,
                     'filename': submission['answer']["filename"],
                     'timestamp': submission['created_at'].strftime(

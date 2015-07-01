@@ -10,12 +10,25 @@
        <b><%=problem_content %></b>
     <% } %>
 <hr>    
+    <% if (student_answer) { %>
+       <b><%=student_answer%></b>
+    <% } %>
+<hr>    
     <% if (uploaded) { %>
       <p><b>File uploaded</b> 
         <a href="<%= downloadUrl %>"><%= uploaded.filename %></a></p>
     <% } else { %>
       <p>No file has been uploaded.</p>
     <% } %>
+<hr>
+    <% if (student_answer) { %>
+      <p><b>Your Answer</b> 
+      <textarea  class="post_answer" rows="80" cols="80"><%=student_answer %></textarea>
+      <button class="post_answer_button">ok</button>
+    <% } else { %>
+      <p>No answer.</p>
+    <% } %>
+<hr> 
     <% if (graded) { %>
       <p>Your score is <%= graded.score %> / <%= max_score %><br/>
         <% if (graded.comment) { %>
@@ -56,24 +69,19 @@
       <tr>
         <th>Username</th>
         <th>Name</th>
-        <th>Filename</th>
         <th>Uploaded</th>
         <th>Grade</th>
         <th>Instructor's comments</th>
         <th>Annotated</th>
+        <th>Student Answer</th>
+        <th>Filename</th>
       </tr>
       <% for (var i = 0; i < assignments.length; i++) { %>
       <%     var assignment = assignments[i]; %>
         <tr id="row-<%= assignment.module_id %>">
           <td><%= assignment.username %></td>
           <td><%= assignment.fullname %></td>
-          <td>
-            <% if (assignment.filename) { %>
-              <a href="<%= downloadUrl %>?student_id=<%= assignment.student_id %>">
-                <%= assignment.filename %>
-              </a>
-            <% } %>
-          </td>
+          <!--<td><%= assignment.student_answer %></td>--> <!--need a box to show it--> 
           <td><%= assignment.timestamp %></td>
           <td>
             <% if (assignment.score !== null) { %>
@@ -89,6 +97,14 @@
             <% if (assignment.annotated) { %>
               <a href="<%= annotatedUrl %>?module_id=<%= assignment.module_id %>">
                 <%= assignment.annotated %>
+              </a>
+            <% } %>
+          </td>
+          <td><button  class="student_answer btn btn-link" title="<%= assignment.student_answer %>">show answer</button></td>
+          <td>
+            <% if (assignment.filename) { %>
+              <a href="<%= downloadUrl %>?student_id=<%= assignment.student_id %>">
+                <%= assignment.filename %>
               </a>
             <% } %>
           </td>
@@ -168,6 +184,7 @@
           <input id="module_id-input" type="hidden" name="module_id"/>
           <input id="submission_id-input" type="hidden" name="submission_id"/>
           <div>Grade for <span id="student-name"/></div>
+          <div>student answer: <p id="student_answer"></p></div>
           <div>Grade: <input id="grade-input" name="grade"/>
             <span class="error"></span></div>
           <div>Comment: <textarea id="comment-input" name="comment" rows="4"></textarea></div>
@@ -186,3 +203,4 @@
   </section>
   {% endif %}
 </div>
+

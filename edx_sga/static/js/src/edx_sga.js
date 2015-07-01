@@ -1,5 +1,16 @@
 /* Javascript for StaffGradedAssignmentXBlock. */
+
 function StaffGradedAssignmentXBlock(runtime, element) {
+
+    $(function () {
+            $('.post_answer_button').on('click',post_answer);
+            function post_answer(){
+              answer = $(this).prev().val();
+              alert(answer)
+              //post
+            }
+            });
+
     function xblock($, _) {
         var uploadUrl = runtime.handlerUrl(element, 'upload_assignment');
         var downloadUrl = runtime.handlerUrl(element, 'download_assignment');
@@ -131,6 +142,14 @@ function StaffGradedAssignmentXBlock(runtime, element) {
                 .leanModal({closeButton: '#enter-grade-cancel'})
                 .on('click', handleGradeEntry);
 
+            //edit by wwj
+            // show answer
+            $(element).find('.student_answer')
+                //.leanModal({closeButton: '#enter-grade-cancel'})
+                .on('click', show_answer);
+            function show_answer(){
+                alert(this.title);
+            }
             // Set up annotated file upload
             $(element).find('#grade-info .fileupload').each(function() {
                 var row = $(this).parents("tr");
@@ -159,6 +178,7 @@ function StaffGradedAssignmentXBlock(runtime, element) {
             var row = $(this).parents("tr");
             var form = $(element).find("#enter-grade-form");
             $(element).find('#student-name').text(row.data('fullname'));
+            $(element).find('#student_answer').text(row.data('student_answer'));
             form.find('#module_id-input').val(row.data('module_id'));
             form.find('#submission_id-input').val(row.data('submission_id'));
             form.find('#grade-input').val(row.data('score'));

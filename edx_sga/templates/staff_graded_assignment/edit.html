@@ -1,4 +1,6 @@
 {% load i18n %}
+<!--include rich editor file-->
+
 
 <div id="staff-graded-assignment-edit">
   <ul class="list-input settings-list">
@@ -7,16 +9,35 @@
       <div class="wrapper-comp-setting">
         <label class="label setting-label" 
           for="{{ field.name }}_input">{{ field.display_name }}</label>
-        <input class="input setting-input" type="text" 
+       {% if field.name == "problem_content" %}
+       <textarea wrap="off" cols="80" rows="10" id="{{ field.name }}_input" name="{{ field.name}}" data-validator="{{ validator }}" >{{ value }}</textarea>
+       {%else%}
+       <input class="input setting-input" type="text" 
                id="{{ field.name }}_input" name="{{ field.name}}" 
                value="{{ value }}" data-validator="{{ validator }}"/>
+        
+       {% endif %}
       </div>
       <span class="tip setting-help">{{ field.help }}</span>
     </li>
     {% endfor %}
   </ul>
 </div>
-
+{%comment%}
+<link rel="stylesheet" href="http://7sby7q.com1.z0.glb.clouddn.com/simditor.css">
+<script src="http://7sby7q.com1.z0.glb.clouddn.com/jquery.min.js"></script>
+<script src="http://7sby7q.com1.z0.glb.clouddn.com/module.min.js"></script>
+<script src="http://7sby7q.com1.z0.glb.clouddn.com/hotkeys.min.js"></script>
+<script src="http://7sby7q.com1.z0.glb.clouddn.com/simditor.min.js"></script>
+{%endcomment%}
 <script type="application/javascript">
- $("ul.action-modes").html(' <li class="view-button sga_editor_tab">{% trans "Settings" %}</li>')
+    //Simditor is not defined  why??
+/*
+    $(document).ready(function(){ 
+    var editor = new Simditor({
+              textarea: $('#problem_content')
+              });              
+    });
+    */
+    $("ul.action-modes").html(' <li class="view-button sga_editor_tab">{% trans "Settings" %}</li>')
 </script>
