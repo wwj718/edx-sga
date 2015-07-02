@@ -664,6 +664,13 @@ class StaffGradedAssignmentXBlock(XBlock):
         )
         return path
 
+    #wwj
+    @XBlock.json_handler
+    def handle_answer(self, data, suffix=''):
+        the_post_student_answer = data.get('student_answer')
+        self.student_answer = str(the_post_student_answer)
+        return {"student_answer":self.student_answer}
+
 
 def _get_sha1(file_descriptor):
     """

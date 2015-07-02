@@ -1,16 +1,26 @@
 /* Javascript for StaffGradedAssignmentXBlock. */
 
 function StaffGradedAssignmentXBlock(runtime, element) {
-
-    $(function () {
-            $('.post_answer_button').on('click',post_answer);
-            function post_answer(){
-              answer = $(this).prev().val();
-              alert(answer)
-              //post
-            }
+  /*
+             $('.post_answer_button').click(function(){
+            alert("test")
+            var answer = $(this).prev().val();
+            post_answer(runtime, element,answer);
             });
 
+    function post_answer(runtime, element,answer) {
+        $.ajax({
+            type: "POST",
+            url: runtime.handlerUrl(element, 'handle_answer'),
+            data: JSON.stringify({ student_answer: student_answer}),  //number
+            success: function(result) {
+                console.log("result");
+                //console.log(result);
+                //watched_status.text(result.watched);
+            }
+        });
+    }
+   */
     function xblock($, _) {
         var uploadUrl = runtime.handlerUrl(element, 'upload_assignment');
         var downloadUrl = runtime.handlerUrl(element, 'download_assignment');
@@ -247,6 +257,7 @@ function StaffGradedAssignmentXBlock(runtime, element) {
         }
 
         $(function($) { // onLoad
+            //
             var block = $(element).find('.sga-block');
             var state = block.attr('data-state');
             render(JSON.parse(state));
@@ -266,6 +277,26 @@ function StaffGradedAssignmentXBlock(runtime, element) {
                 block.find('#staff-debug-info-button')
                     .leanModal();
             }
+////////////////wwj
+            //wait for creating button from template
+            $('.post_answer_button').click(function(){
+            var student_answer = $(this).prev().val();
+            post_answer(runtime, element,student_answer);
+            });
+
+    function post_answer(runtime, element,student_answer) {
+        $.ajax({
+            type: "POST",
+            url: runtime.handlerUrl(element, 'handle_answer'),
+            data: JSON.stringify({ student_answer: student_answer}),  //number
+            success: function(result) {
+                console.log("result");
+                console.log(result);
+                alert("OK")
+            }
+        });
+    }
+/////////////////wwj
         });
     }
 
