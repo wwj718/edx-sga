@@ -285,6 +285,7 @@ class StaffGradedAssignmentXBlock(XBlock):
         Return student assignment information for display on the
         grading screen.
         显示在教室批改部分
+        展示时机，原本是提交完文件，提交完答案应该也展示 即便没有文件
         """
         def get_student_data():
             # pylint: disable=no-member
@@ -293,7 +294,7 @@ class StaffGradedAssignmentXBlock(XBlock):
             annotated file name, student id and module id, this
             information will be used on grading screen
             """
-            # Submissions doesn't have API for this, just use model directly.
+            # Submissions doesn't have API for this, just use model directly. 直接操作model ,这一块是和成绩挂钩的关键
             students = SubmissionsStudent.objects.filter(
                 course_id=self.course_id,
                 item_id=self.block_id)
@@ -669,6 +670,14 @@ class StaffGradedAssignmentXBlock(XBlock):
     def handle_answer(self, data, suffix=''):
         the_post_student_answer = data.get('student_answer')
         self.student_answer = str(the_post_student_answer)
+        #Save a students submission
+        student_id = self.student_submission_id()
+        answer = {
+            "sha1": "None",
+            "filename": "None",
+            "mimetype": "json",
+            }
+        submissions_api.create_submission(student_id, answer)
         return {"student_answer":self.student_answer}
 
 
