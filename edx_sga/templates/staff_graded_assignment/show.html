@@ -9,30 +9,26 @@
     <% if (problem_content) { %>
        <b><%=problem_content %></b>
     <% } %>
-<hr>    
+<hr>
     <% if (student_answer) { %>
-       <b><%=student_answer%></b>
+      <p><b>{% trans "Your Answer" %}</b> 
+      <textarea  class="post_answer"  cols="80"><%=student_answer %></textarea>
+      <button class="post_answer_button">ok</button>
+    <% } else { %>
+      <p>{% trans "No answer." %}/p>
     <% } %>
 <hr>    
     <% if (uploaded) { %>
-      <p><b>File uploaded</b> 
+      <p><b>{% trans "File uploaded" %}</b> 
         <a href="<%= downloadUrl %>"><%= uploaded.filename %></a></p>
     <% } else { %>
       <p>No file has been uploaded.</p>
     <% } %>
-<hr>
-    <% if (student_answer) { %>
-      <p><b>Your Answer</b> 
-      <textarea  class="post_answer"  cols="80"><%=student_answer %></textarea>
-      <button class="post_answer_button">ok</button>
-    <% } else { %>
-      <p>No answer.</p>
-    <% } %>
 <hr> 
     <% if (graded) { %>
-      <p>Your score is <%= graded.score %> / <%= max_score %><br/>
+      <p>{% trans "Your score is" %} <%= graded.score %> / <%= max_score %><br/>
         <% if (graded.comment) { %>
-          <b>Instructor comment</b> <%= graded.comment %>
+          <b>{% trans "Instructor comment" %}</b> <%= graded.comment %>
         <% } %>
         <% if (annotated) { %><br/>
           <b>Annotated file from instructor</b>
@@ -67,14 +63,14 @@
   <script type="text/template" id="sga-grading-tmpl">
     <table class="gridtable">
       <tr>
-        <th>Username</th>
-        <th>Name</th>
-        <th>Uploaded</th>
-        <th>Grade</th>
-        <th>Instructor's comments</th>
-        <th>Annotated</th>
-        <th>Student Answer</th>
-        <th>Filename</th>
+        <th>{% trans "Username" %}</th>
+        <th>{% trans "Name" %}</th>
+        <th>{% trans "Uploaded" %}</th>
+        <th>{% trans "Gradde" %}</th>
+        <th>{% trans "Instructor's comments" %}</th>
+        <th>{% trans "Annotated" %}</th>
+        <th>{% trans "Student Answer" %}</th>
+        <th>{% trans "Filename" %}</th>
       </tr>
       <% for (var i = 0; i < assignments.length; i++) { %>
       <%     var assignment = assignments[i]; %>

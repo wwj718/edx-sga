@@ -23,6 +23,7 @@ TODO
 ====
 - 支持富文本
 - 排版和美化
+- 国际化:{% trans "String" %}
 
 Staff Graded Assignment XBlock
 ==============================
