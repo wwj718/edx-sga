@@ -669,7 +669,7 @@ class StaffGradedAssignmentXBlock(XBlock):
     @XBlock.json_handler
     def handle_answer(self, data, suffix=''):
         the_post_student_answer = data.get('student_answer')
-        self.student_answer = str(the_post_student_answer)
+        self.student_answer = the_post_student_answer
         #Save a students submission
         student_id = self.student_submission_id()
         answer = {
