@@ -12,7 +12,7 @@
 <hr>
     <% if (student_answer) { %>
       <p><b>{% trans "Your Answer" %}</b> 
-      <textarea  class="post_answer"  cols="80"><%=student_answer %></textarea>
+      <textarea  class="post_answer"  cols="80" style="height:150px"><%=student_answer %></textarea>
       <button class="post_answer_button">ok</button>
     <% } else { %>
       <p>{% trans "No answer." %}/p>
