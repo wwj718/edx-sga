@@ -1,0 +1,136 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-02 17:51+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <wuwenjie718@gmail.com>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: templates/staff_graded_assignment/edit.html:42
+msgid "Settings"
+msgstr "设置"
+
+#: templates/staff_graded_assignment/show.html:14
+msgid "Your Answer"
+msgstr "你的答案"
+
+#: templates/staff_graded_assignment/show.html:18
+msgid "No answer."
+msgstr "暂无答案"
+
+#: templates/staff_graded_assignment/show.html:22
+msgid "File uploaded"
+msgstr "文件上传"
+
+#: templates/staff_graded_assignment/show.html:29
+msgid "Your score is"
+msgstr "你的得分是"
+
+#: templates/staff_graded_assignment/show.html:31
+msgid "Instructor comment"
+msgstr "教员评分"
+
+#: templates/staff_graded_assignment/show.html:39
+msgid "This assignment has not yet been graded."
+msgstr "作业暂未评分"
+
+#: templates/staff_graded_assignment/show.html:44
+msgid "Upload a different file"
+msgstr "上传一份不同的文件"
+
+#: templates/staff_graded_assignment/show.html:46
+msgid "Upload your assignment"
+msgstr "上传你的作业"
+
+#: templates/staff_graded_assignment/show.html:66
+msgid "Username"
+msgstr "用户名"
+
+#: templates/staff_graded_assignment/show.html:67
+msgid "Name"
+msgstr "名字"
+
+#: templates/staff_graded_assignment/show.html:68
+msgid "Uploaded"
+msgstr "已上传"
+
+#: templates/staff_graded_assignment/show.html:69
+msgid "Gradde"
+msgstr "得分"
+
+#: templates/staff_graded_assignment/show.html:70
+msgid "Instructor's comments"
+msgstr "教员评价"
+
+#: templates/staff_graded_assignment/show.html:71
+msgid "Annotated"
+msgstr "注释"
+
+#: templates/staff_graded_assignment/show.html:72
+msgid "Student Answer"
+msgstr "学生答案"
+
+#: templates/staff_graded_assignment/show.html:73
+msgid "Filename"
+msgstr "文件名"
+
+#: templates/staff_graded_assignment/show.html:87
+msgid "Awaiting instructor approval"
+msgstr "等待教员批改"
+
+#: templates/staff_graded_assignment/show.html:111
+msgid "Approve grade"
+msgstr "批改成绩"
+
+#: templates/staff_graded_assignment/show.html:113
+msgid "Enter grade"
+msgstr "输入成绩"
+
+#: templates/staff_graded_assignment/show.html:131
+msgid "Grade Submissions"
+msgstr "成绩提交"
+
+
+#: templates/staff_graded_assignment/show.html:133
+msgid "Staff Debug Info"
+msgstr "调试信息"
+
+#: templates/staff_graded_assignment/show.html:138
+msgid "Staff Graded Assignment"
+msgstr "主观题作业"
+
+#: templates/staff_graded_assignment/show.html:150
+msgid "Staff Debug"
+msgstr "调试"
+
+#: templates/staff_graded_assignment/show.html:157
+msgid "Module Fields"
+msgstr ""
+
+#: templates/staff_graded_assignment/show.html:175
+msgid "Enter Grade"
+msgstr "输入成绩"
+
+#: templates/staff_graded_assignment/show.html:188
+msgid "Submit"
+msgstr "提交"
+
+#: templates/staff_graded_assignment/show.html:190
+msgid "Cancel"
+msgstr "取消"
+
+#: templates/staff_graded_assignment/show.html:193
+msgid "Remove grade"
+msgstr "删除成绩"
