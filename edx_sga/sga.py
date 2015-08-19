@@ -333,7 +333,8 @@ class StaffGradedAssignmentXBlock(XBlock):
                     'student_id': student.student_id,
                     'submission_id': submission['uuid'],
                     'username': module.student.username,
-                    'student_answer': self.student_answer,
+                    #'student_answer': self.student_answer, #?? maybe error
+                    'student_answer': submission['answer']["student_answer"],
                     'fullname': module.student.profile.name,
                     'filename': submission['answer']["filename"],
                     'timestamp': submission['created_at'].strftime(
@@ -445,6 +446,7 @@ class StaffGradedAssignmentXBlock(XBlock):
         answer = {
             "sha1": sha1,
             "filename": upload.file.name,
+            "student_answer": "student_answer",
             "mimetype": mimetypes.guess_type(upload.file.name)[0],
         }
         student_id = self.student_submission_id()
@@ -675,6 +677,7 @@ class StaffGradedAssignmentXBlock(XBlock):
         answer = {
             "sha1": "None",
             "filename": "None",
+            "student_answer": the_post_student_answer,
             "mimetype": "json",
             }
         submissions_api.create_submission(student_id, answer)
