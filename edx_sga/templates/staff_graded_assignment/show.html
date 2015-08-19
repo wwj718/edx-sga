@@ -96,7 +96,9 @@
               </a>
             <% } %>
           </td>
-          <td><button  class="student_answer btn btn-link" title="<%= assignment.student_answer %>">show answer</button></td>
+          <!--<td><button  class="student_answer btn btn-link" title="<%= assignment.student_answer %>">show answer</button></td>-->
+
+          <td><%= assignment.student_answer %></td>
           <td>
             <% if (assignment.filename) { %>
               <a href="<%= downloadUrl %>?student_id=<%= assignment.student_id %>">
