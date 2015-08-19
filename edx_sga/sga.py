@@ -440,13 +440,15 @@ class StaffGradedAssignmentXBlock(XBlock):
         """
         Save a students submission file.
         """
+        submission = self.get_submission()
+        student_answer = submission["answer"]["student_answer"]
         require(self.upload_allowed())
         upload = request.params['assignment']
         sha1 = _get_sha1(upload.file)
         answer = {
             "sha1": sha1,
             "filename": upload.file.name,
-            "student_answer": "student_answer",
+            "student_answer": student_answer,
             "mimetype": mimetypes.guess_type(upload.file.name)[0],
         }
         student_id = self.student_submission_id()
@@ -670,15 +672,19 @@ class StaffGradedAssignmentXBlock(XBlock):
     #wwj
     @XBlock.json_handler
     def handle_answer(self, data, suffix=''):
+        submission = self.get_submission()
+        sha1 = submission["answer"]["sha1"]
+        filename = submission["answer"]["filename"]
+        mimetype = submission["answer"]["mimetype"]
         the_post_student_answer = data.get('student_answer')
         self.student_answer = the_post_student_answer
         #Save a students submission
         student_id = self.student_submission_id()
         answer = {
-            "sha1": "None",
-            "filename": "None",
+            "sha1": sha1,
+            "filename": filename,
             "student_answer": the_post_student_answer,
-            "mimetype": "json",
+            "mimetype":mimetype ,
             }
         submissions_api.create_submission(student_id, answer)
         return {"student_answer":self.student_answer}

@@ -98,7 +98,6 @@
           </td>
           <!--<td><button  class="student_answer btn btn-link" title="<%= assignment.student_answer %>">show answer</button></td>-->
 
-          <td><%= assignment.student_answer %></td>
           <td>
             <% if (assignment.filename) { %>
               <a href="<%= downloadUrl %>?student_id=<%= assignment.student_id %>">
@@ -136,8 +135,8 @@
   </div>
 
   <section aria-hidden="true" class="modal staff-modal" id="{{ id }}-grade" style="height: 75%">
-    <div class="inner-wrapper" style="color: black; overflow: auto;">
-      <header><h2><span class="display_name">{{ display_name }}</span> - {% trans "Staff Graded Assignment" %}</h2></header>
+    <div class="inner-wrapper" style="color: black; overflow:auto;">
+      <header style="overflow:auto"><h2><span class="display_name">{{ display_name }}</span> - {% trans "Staff Graded Assignment" %}</h2></header>
       <br/>
       <div id="grade-info" style="display: block;">
         Loading...
