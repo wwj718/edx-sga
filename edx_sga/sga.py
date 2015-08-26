@@ -441,7 +441,9 @@ class StaffGradedAssignmentXBlock(XBlock):
         Save a students submission file.
         """
         submission = self.get_submission()
-        student_answer = submission["answer"]["student_answer"]
+        student_answer = "No answer"
+        if submission:
+            student_answer = submission["answer"]["student_answer"]
         require(self.upload_allowed())
         upload = request.params['assignment']
         sha1 = _get_sha1(upload.file)
@@ -673,9 +675,14 @@ class StaffGradedAssignmentXBlock(XBlock):
     @XBlock.json_handler
     def handle_answer(self, data, suffix=''):
         submission = self.get_submission()
-        sha1 = submission["answer"]["sha1"]
-        filename = submission["answer"]["filename"]
-        mimetype = submission["answer"]["mimetype"]
+        if submission:
+            sha1 = submission["answer"]["sha1"]
+            filename = submission["answer"]["filename"]
+            mimetype = submission["answer"]["mimetype"]
+        else:
+            sha1 = ""
+            filename = ""
+            mimetype = ""
         the_post_student_answer = data.get('student_answer')
         self.student_answer = the_post_student_answer
         #Save a students submission
